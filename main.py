@@ -32,19 +32,17 @@ for row in table.getchildren()[1:]:
         start = start.strip()
         end = end.strip()
         month, day, year = date_str.split('.')
-        start_date = f'{year}-{day}-{month}T{start}:00-07:00'
-        end_date = f'{year}-{day}-{month}T{end}:00-07:00'
+        start_date = f'{year}-{day}-{month}T{start}:00+03:00'
+        end_date = f'{year}-{day}-{month}T{end}:00+03:00'
         print(f'Meeting at {start_date} on {end_date}')
         
         event = {
             'summary': 'Logics study session',
             'start': {
                 'dateTime': start_date,
-                'timeZone': 'Asia/Jerusalem',
             },
             'end': {
                 'dateTime': end_date,
-                'timeZone': 'Asia/Jerusalem',
             },
             'reminders': {
                 'useDefault': False,
@@ -56,9 +54,3 @@ for row in table.getchildren()[1:]:
         }
 
         event = service.events().insert(calendarId='primary', body=event).execute()
-        # print 'Event created: %s' % (event.get('htmlLink'))
-# print('Getting the upcoming 10 events')
-# events_result = service.events().list(calendarId='primary', timeMin=now,
-#                                     maxResults=10, singleEvents=True,
-#                                     orderBy='startTime').execute()
-# events = events_result.get('items', [])
