@@ -1,12 +1,15 @@
-# TODO parse example html using HTML parser
-# TODO decide on parser
-# TODO connect to google calendar API and create event for each study session
-from lxml import html
 import datetime
+import os
+
 from googleapiclient.discovery import build
 from httplib2 import Http
-from oauth2client import file, client, tools
-import os
+from lxml import html
+from oauth2client import client, file, tools
+
+# TODO grab meetings info directly from browser
+
+# Usage: put the HTML content of your course in example.html and set CREDENTIALS_PATH to the path of your
+# Google credentials
 
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 
